@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prendre rendez-vous | Dr Bensimon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f4f4f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .rdv-simple-wrapper {
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+      padding: 24px 10px 0 10px;
+    }
+    .rdv-simple-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.2em;
+      color: #222;
+      text-align: center;
+    }
+    .rdv-simple-sub {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 1.4em;
+      color: #222;
+      text-align: center;
+    }
+    .rdv-simple-desc {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 2em;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .rdv-simple-box {
+      background: #fff;
+      border-radius: 16px;
+      border: 1.5px solid #e0e5ee;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 38px 28px;
+      gap: 32px;
+      transition: box-shadow 0.2s;
+    }
+    .rdv-simple-box:hover {
+      box-shadow: 0 8px 32px rgba(0,123,255,0.08);
+      border-color: #b5c9e6;
+    }
+    .rdv-simple-col {
+      flex: 1 1 0;
+      min-width: 210px;
+      max-width: 340px;
+    }
+    .rdv-simple-col h3 {
+      font-size: 1.09rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #222;
+      letter-spacing: 0.01em;
+    }
+    .rdv-simple-phone {
+      font-size: 1.13rem;
+      font-weight: bold;
+      color: #007BFF;
+      margin-top: 6px;
+      margin-bottom: 0;
+      display: block;
+      letter-spacing: 0.01em;
+    }
+    .rdv-simple-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rdv-simple-form label {
+      font-size: 0.97rem;
+      color: #222;
+      margin-bottom: 2px;
+    }
+    .rdv-simple-form input[type="text"],
+    .rdv-simple-form input[type="email"],
+    .rdv-simple-form input[type="tel"] {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid #d0d7e2;
+      background: #fafbfc;
+      font-size: 1rem;
+      margin-top: 2px;
+      transition: border 0.2s;
+    }
+    .rdv-simple-form input[type="text"]:focus,
+    .rdv-simple-form input[type="email"]:focus,
+    .rdv-simple-form input[type="tel"]:focus {
+      border: 1.5px solid #007BFF;
+      outline: none;
+    }
+    .rdv-simple-form input[type="radio"] {
+      margin-left: 10px;
+      margin-right: 2px;
+    }
+    .rdv-simple-form-privacy {
+      margin: 7px 0 0 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .rdv-simple-form button {
+      background: #007BFF;
+      color: #fff;
+      padding: 10px 0;
+      border: none;
+      border-radius: 7px;
+      font-weight: bold;
+      font-size: 1.07rem;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+    }
+    .rdv-simple-form button:hover {
+      background: #0056b3;
+    }
+    @media (max-width: 900px) {
+      .rdv-simple-box {
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 6px;
+      }
+      .rdv-simple-col {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER identique à index.html -->
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-bensimon.png" alt="Logo Dr Bensimon">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#services">Prestations</a></li>
+          <li><a href="bensimon.html">Dr Bensimon</a></li>
+          <li><a href="cabinet.html">Cabinet</a></li>
+          <li><a href="rdv.html">RDV</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">
+          <span class="hamburger-icon">&#9776;</span>
+        </div>
+      </nav>
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay"></div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+  <div class="mobile-menu-close">&times;</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#services">Prestations</a></li>
+    <li><a href="bensimon.html">Dr Bensimon</a></li>
+    <li><a href="cabinet.html">Cabinet</a></li>
+    <li><a href="rdv.html">RDV</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+      <div class="header-actions">
+        <a href="blog.html" class="blog-link">Blog</a>
+        <a href="contact.html" class="contact-btn">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="rdv-simple-wrapper">
+    <div class="rdv-simple-title">Prendre rendez-vous</div>
+    <div class="rdv-simple-sub">Trois possibilités pour prendre rendez-vous simplement</div>
+    <div class="rdv-simple-desc">
+      Le Docteur Denis Bensimon, chirurgien dentiste, vous reçoit dans son nouveau cabinet, Paris 7ème, depuis Avril 2017.<br>
+      Consultation, urgence dentaire, nouveau patient, l’agenda prévoit toutes les plages horaires nécessaires pour vous recevoir.<br>
+      Le personnel parle couramment l’anglais et l’espagnol.
+    </div>
+    <div class="rdv-simple-box">
+      <div class="rdv-simple-col">
+        <h3>Nous appeler</h3>
+        <span class="rdv-simple-phone">+33 (0)1 53 75 00 50</span>
+      </div>
+      <div class="rdv-simple-col">
+        <h3>Se faire appeler</h3>
+        <form class="rdv-simple-form">
+          <label>Déjà patient du cabinet :
+            <input type="radio" name="patient" value="oui"> Oui
+            <input type="radio" name="patient" value="non" checked> Non
+          </label>
+          <label>Prénom <input type="text" name="prenom" required></label>
+          <label>Nom <input type="text" name="nom" required></label>
+          <label>Email <input type="email" name="email" required></label>
+          <label>Téléphone <input type="tel" name="telephone" required></label>
+          <label>Objet de la consultation <input type="text" name="objet"></label>
+          <div class="rdv-simple-form-privacy">
+            <input type="checkbox" required> J’accepte votre politique de confidentialité
+          </div>
+          <button type="submit">Valider</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<footer class="site-footer">
+    <div class="site-footer-content">
+      <p><i class="fas fa-map-marker-alt"></i> 98 rue de l'Université, 75007 Paris</p>
+      <p><i class="fas fa-phone"></i> +33 (0)1 53 75 00 50</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:secretariat@drbensimon.com">secretariat@drbensimon.com</a></p>
+      <p>&copy; 2025 Docteur Denis Bensimon - dev par DidYouReboot </p>
+    </div>
+  </footer>

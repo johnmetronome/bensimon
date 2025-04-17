@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le blog | Dr Bensimon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f7fafd 0%, #e3e7ed 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+    }
+    .fade-in-appear {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.1s cubic-bezier(.22,.68,.62,1.14) 0.2s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .blog-hero {
+      background: linear-gradient(120deg, #f0f6ff 70%, #e6eaf6 100%);
+      padding: 54px 0 28px 0;
+      text-align: center;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 2px 24px rgba(0,123,255,0.04);
+      margin-bottom: 0;
+    }
+    .blog-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1a2433;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+    .blog-hero p {
+      color: #007BFF;
+      font-size: 1.13rem;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    .blog-slider {
+      margin: 36px auto 0 auto;
+      max-width: 900px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,123,255,0.09);
+      background: #fff;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: fadeInUp 1.3s cubic-bezier(.22,.68,.62,1.14) 0.7s both;
+    }
+    .blog-slider img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.7s cubic-bezier(.22,.68,.62,1.14);
+      filter: grayscale(0%) brightness(1);
+    }
+    .blog-slider img:hover {
+      filter: grayscale(10%) brightness(1.08);
+    }
+    .blog-content {
+      max-width: 1200px;
+      margin: 0 auto 0 auto;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      padding: 0 12px;
+    }
+    .blog-main {
+      flex: 2 1 600px;
+      min-width: 320px;
+      margin-top: 30px;
+      margin-bottom: 32px;
+    }
+    .blog-articles {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      animation: fadeInUp 1.2s cubic-bezier(.22,.68,.62,1.14) 0.7s both;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 14px rgba(0,123,255,0.07);
+      padding: 32px 28px 24px 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      cursor: pointer;
+    }
+    .blog-card:hover {
+      box-shadow: 0 6px 32px rgba(0,123,255,0.12);
+      transform: translateY(-4px) scale(1.01);
+    }
+    .blog-card-title {
+      font-size: 1.28rem;
+      color: #007BFF;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .blog-card-subtitle {
+      font-size: 1.11rem;
+      color: #1a2433;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .blog-card-desc {
+      font-size: 1.01rem;
+      color: #333;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .blog-card-link {
+      color: #007BFF;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.01rem;
+      transition: color 0.2s;
+    }
+    .blog-card-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    .blog-sidebar {
+      flex: 1 1 240px;
+      min-width: 220px;
+      margin-top: 30px;
+      margin-bottom: 32px;
+      animation: fadeInUp 1.2s cubic-bezier(.22,.68,.62,1.14) 0.9s both;
+    }
+    .blog-search {
+      margin-bottom: 26px;
+    }
+    .blog-search input[type="text"] {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #d0d7e2;
+      font-size: 1.01rem;
+      background: #fafbfc;
+      transition: border 0.2s;
+      margin-bottom: 0;
+    }
+    .blog-search input[type="text"]:focus {
+      border: 1.5px solid #007BFF;
+      outline: none;
+    }
+    .blog-sidebar-title {
+      font-size: 1.13rem;
+      font-weight: bold;
+      color: #1a2433;
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .blog-sidebar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+    }
+    .blog-sidebar-list li {
+      margin-bottom: 10px;
+    }
+    .blog-sidebar-list a {
+      color: #007BFF;
+      text-decoration: none;
+      font-size: 1.01rem;
+      transition: color 0.2s;
+    }
+    .blog-sidebar-list a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    .blog-pagination {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin: 38px 0 0 0;
+    }
+    .blog-pagination a, .blog-pagination span {
+      display: inline-block;
+      min-width: 36px;
+      padding: 7px 0;
+      border-radius: 7px;
+      background: #fff;
+      color: #007BFF;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 1px 6px rgba(0,123,255,0.07);
+      font-size: 1.01rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .blog-pagination a.active, .blog-pagination span.active {
+      background: #007BFF;
+      color: #fff;
+    }
+    .blog-pagination a:hover {
+      background: #0056b3;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .blog-content {
+        flex-direction: column;
+        gap: 24px;
+        padding: 0 4px;
+      }
+      .blog-main, .blog-sidebar {
+        margin-top: 18px;
+        margin-bottom: 18px;
+        padding: 0;
+      }
+      .blog-slider img {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER identique à index.html -->
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-bensimon.png" alt="Logo Dr Bensimon">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#services">Prestations</a></li>
+          <li><a href="bensimon.html">Dr Bensimon</a></li>
+          <li><a href="cabinet.html">Cabinet</a></li>
+          <li><a href="rdv.html">RDV</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">
+          <span class="hamburger-icon">&#9776;</span>
+        </div>
+      </nav>
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay"></div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+  <div class="mobile-menu-close">&times;</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#services">Prestations</a></li>
+    <li><a href="bensimon.html">Dr Bensimon</a></li>
+    <li><a href="cabinet.html">Cabinet</a></li>
+    <li><a href="rdv.html">RDV</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+      <div class="header-actions">
+        <a href="blog.html" class="blog-link">Blog</a>
+        <a href="contact.html" class="contact-btn">Contact</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="blog-hero fade-in-appear">
+    <h1>Le blog</h1>
+    <p>Vous informer sur la santé dentaire</p>
+    <div class="blog-slider">
+      <img src="images/page-9.jpg" alt="Ambiance cabinet" />
+      <!--
+      <img src="images/blog-slider2.jpg" alt="Soins dentaires" style="display:none;" />
+      -->
+      <!-- Ajoute un petit JS si tu veux slider automatiquement -->
+    </div>
+  </div>
+  <div class="blog-content fade-in-appear">
+    <div class="blog-main">
+      <div class="blog-articles">
+        <div class="blog-card">
+          <div class="blog-card-title">La facette</div>
+          <div class="blog-card-subtitle">La facette dentaire pour donner un coup d’éclat à votre sourire</div>
+          <div class="blog-card-desc">
+            Même si vous avez la meilleure hygiène bucco-dentaire possible, certains problèmes esthétiques persistent parfois. Ces défauts vous font perdre le sourire et vous complexent ? Sachez qu’il existe une méthode de chirurgie dentaire, rapide et sans douleur, pour une belle harmonie de vos dents : la facette dentaire. Qu’est-ce qu’une facette dentaire ? Une facette […]
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-title">Trouver un dentiste à Paris</div>
+          <div class="blog-card-subtitle">Trouver un dentiste à Paris : à la recherche du praticien idéal</div>
+          <div class="blog-card-desc">
+            Vous souhaitez trouver un dentiste à Paris ? Quelques étapes peuvent s’avérer nécessaires pour consulter un spécialiste du secteur dans la capitale, et vous confortez dans votre choix. Dans cet article, découvrez les bonnes pratiques pour être pris en charge dans les meilleurs délais. Les étapes pour trouver un dentiste à Paris Demandez conseil à […]
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-title">Tout savoir sur le métier de dentiste à Paris</div>
+          <div class="blog-card-subtitle">Tout savoir sur le métier de dentiste à Paris</div>
+          <div class="blog-card-desc">
+            Le métier de dentiste à Paris est fortement représenté dans les différents arrondissements, avec une grande variété de spécialités. Les formations pour le devenir sont aussi diverses. Suivez notre guide pour découvrir en détails ce métier passionnant qui n’aura bientôt plus de secret pour vous.
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-title">Pose d'un implant dentaire</div>
+          <div class="blog-card-subtitle">Tout ce que vous devez savoir avant et après la pose d’un implant dentaire</div>
+          <div class="blog-card-desc">
+            Même si l’implant dentaire fait partie des interventions les plus courantes en chirurgie-dentaire, il est important d’être assez informé sur cette procédure qui inclut les conditions à remplir, les recommandations post-opératoires ou encore les risques de complication. De cette façon, vous saurez si vous êtes le candidat idéal !  Pose d’un implant dentaire : les […]
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-title">Pose implant dentaire</div>
+          <div class="blog-card-subtitle">Pose d’un implant dentaire : le déroulement de la procédure</div>
+          <div class="blog-card-desc">
+            Vous connaissez sûrement ce vieil adage d’Alphonse Lamartine : « Un seul être vous manque, et tout est dépeuplé ». Il en est de même pour vos dents ! En effet, il suffit d’une dent en moins pour subir un certain nombre de désagréments, comme une usure prématurée des dents. Pour remédier à cette perte, […]
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-title">Déchaussement des dents</div>
+          <div class="blog-card-subtitle">Déchaussement des dents : soyez attentifs à la santé de votre gencive!</div>
+          <div class="blog-card-desc">
+            Le déchaussement des dents est causé par une dégradation de la gencive qui cesse alors de jouer son rôle de maintien des dents. Ces dernières deviennent alors plus mobiles et peuvent tomber. On parle aussi de récession gingivale puisque la gencive a tendance à perdre du terrain et à découvrir les dents. Cette usure est […]
+          </div>
+          <a href="#" class="blog-card-link">Lire la suite</a>
+        </div>
+      </div>
+      <div class="blog-pagination">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <span>&rarr;</span>
+      </div>
+    </div>
+    <aside class="blog-sidebar">
+      <form class="blog-search" action="#" method="get">
+        <input type="text" placeholder="Rechercher…" name="s" />
+      </form>
+      <div class="blog-sidebar-title">Articles récents</div>
+      <ul class="blog-sidebar-list">
+        <li><a href="#">La facette</a></li>
+        <li><a href="#">La facette dentaire pour donner un coup d’éclat à votre sourire</a></li>
+        <li><a href="#">Trouver un dentiste à Paris</a></li>
+        <li><a href="#">Trouver un dentiste à Paris : à la recherche du praticien idéal</a></li>
+        <li><a href="#">Tout savoir sur le métier de dentiste à Paris</a></li>
+      </ul>
+    </aside>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-content">
+      <p><i class="fas fa-map-marker-alt"></i> 98 rue de l'Université, 75007 Paris</p>
+      <p><i class="fas fa-phone"></i> +33 (0)1 53 75 00 50</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:secretariat@drbensimon.com">secretariat@drbensimon.com</a></p>
+      <p>&copy; 2025 Docteur Denis Bensimon - dev par DidYouReboot </p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

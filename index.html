@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dr Bensimon | Dentiste Paris 7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Lien vers la feuille de style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Modal générique pour avant/après facettes -->
+  <div id="visualiser-modal" class="visualiser-modal">
+    <div class="visualiser-modal-content">
+      <span class="visualiser-modal-close">&times;</span>
+      <div class="visualiser-modal-images">
+        <img id="visualiser-img-avant" src="" alt="Avant" />
+        <img id="visualiser-img-apres" src="" alt="Après" />
+      </div>
+      <div class="visualiser-modal-labels">
+        <span>Avant</span>
+        <span>Après</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-bensimon.png" alt="Logo Dr Bensimon">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#services">Prestations</a></li>
+          <li><a href="bensimon.html">Dr Bensimon</a></li>
+          <li><a href="cabinet.html">Cabinet</a></li>
+          <li><a href="rdv.html">RDV</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">
+          <span class="hamburger-icon">&#9776;</span>
+        </div>
+      </nav>
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay"></div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+  <div class="mobile-menu-close">&times;</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#services">Prestations</a></li>
+    <li><a href="bensimon.html">Dr Bensimon</a></li>
+    <li><a href="cabinet.html">Cabinet</a></li>
+    <li><a href="rdv.html">RDV</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+      <div class="header-actions">
+        <a href="blog.html" class="blog-link">Blog</a>
+        <a href="contact.html" class="contact-btn">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO QUOTE -->
+  <section class="hero-quote">
+    <div class="container">
+      <h2>L'homme crée la beauté</h2>
+      <p>L'excellence de l’esthétisme naturel</p>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section class="slider-section">
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="carousel-slide active">
+          <img src="images/slide1.jpg" alt="Slide 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/slide2.jpg" alt="Slide 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/slide3.jpg" alt="Slide 3">
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-prev">&#10094;</button>
+        <button class="carousel-next">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOC SECTION & SERVICES -->
+  <section class="doc-section" id="services">
+    <div class="container">
+      <h2>Docteur Denis Bensimon, chirurgien dentiste</h2>
+      <h3>spécialisé dans l’esthétique à Paris 7<sup>ème</sup></h3>
+      <div class="doc-content">
+        <img src="images/dr-bensimon-cabinet.jpg" alt="Dr Bensimon" class="doc-portrait">
+        <p>
+          Fort de trente ans d'expérience, le Docteur Denis Bensimon s'est spécialisé dans l'esthétique dentaire.
+          Il propose de redonner de l'harmonie au sourire grâce à des technologies de pointe et des soins
+          respectueux des dents. Sa pratique est personnalisée et à l'écoute de chacun.
+        </p>
+      </div>
+      <!-- Liste des services cliquables -->
+      <ul class="services-list">
+        <li data-service="facettes"><a href="#" class="service-link">FACETTES</a></li>
+        <li data-service="implants"><a href="#" class="service-link">IMPLANTS</a></li>
+        <li data-service="protheses"><a href="#" class="service-link">PROTHÈSES</a></li>
+        <li data-service="gouttieres"><a href="#" class="service-link">GOUTTIÈRES</a></li>
+        <li data-service="blanchiment"><a href="#" class="service-link">BLANCHIMENT</a></li>
+        <li data-service="imagerie"><a href="#" class="service-link">IMAGERIE 3D</a></li>
+      </ul>
+      <!-- Zone pour afficher dynamiquement le contenu détaillé d'un service -->
+      <div id="service-details" class="service-details hidden"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer-content">
+      <p><i class="fas fa-map-marker-alt"></i> 98 rue de l'Université, 75007 Paris</p>
+      <p><i class="fas fa-phone"></i> +33 (0)1 53 75 00 50</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:secretariat@drbensimon.com">secretariat@drbensimon.com</a></p>
+      <p>&copy; 2025 Docteur Denis Bensimon - dev par DidYouReboot </p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // --- Carousel ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.carousel-slide');
+      let currentSlide = 0;
+      const prevButton = document.querySelector('.carousel-prev');
+      const nextButton = document.querySelector('.carousel-next');
+
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      nextButton.addEventListener('click', nextSlide);
+      prevButton.addEventListener('click', prevSlide);
+
+      setInterval(nextSlide, 4000);
+    });
+
+    // --- Mobile Menu ---
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburgerIcon = document.querySelector('.mobile-menu-toggle');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const mobileMenuClose = document.querySelector('.mobile-menu-close');
+      const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
+      hamburgerIcon.addEventListener('click', function() {
+        mobileMenu.classList.add('active');
+        mobileMenuOverlay.style.display = 'block';
+      });
+
+      mobileMenuClose.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.style.display = 'none';
+      });
+
+      mobileMenuOverlay.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.style.display = 'none';
+      });
+
+      mobileMenuLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('active');
+          mobileMenuOverlay.style.display = 'none';
+        });
+      });
+
+      // Gestion dynamique des services
+      const services = {
+
+        facettes: `
+          <h2>Pose de facettes dentaires</h2>
+          <h3>Redonner harmonie et confort à votre sourire</h3>
+          <p>La maîtrise d’une technique rare et véritablement innovante : la pose de facettes sans abimer vos dents. Après avoir réalisé un moulage de votre dentition, de fines lamelles de céramique sont créées sur-mesure, puis posées sur les dents grâce à une technique de collage sans douleur. Le matériau utilisé, résistant et esthétique, permet de s’adapter à la forme et la teinte désirée pour votre nouveau sourire, tout en assurant un confort à long terme.</p>
+          <div class="facettes-slider">
+            <img src="images/facettes1.jpg" alt="Facettes exemple 1" class="facette-photo">
+            <img src="images/facettes2.jpg" alt="Facettes exemple 2" class="facette-photo">
+          </div>
+          <p>Les facettes dentaires permettent de rectifier la forme, le positionnement et les teintes des dents.</p>
+          <ul class="facettes-list">
+            <li><strong>RÉPARER</strong> des dents cassées par un choc, ou usées par le grincement des dents.<br><span class="visualiser-link"><a href="#" class="visualiser">Cliquez ici pour visualiser</a></span></li>
+            <li><strong>ÉQUILIBRER</strong> votre sourire en améliorant le positionnement, l’écart et l’alignement de vos dents.<br><span class="visualiser-link"><a href="#" class="visualiser">Cliquez ici pour visualiser</a></span></li>
+            <li><strong>HARMONISER</strong> les teintes de vos dents ou d’une seule dent.<br><span class="visualiser-link"><a href="#" class="visualiser">Cliquez ici pour visualiser</a></span></li>
+          </ul>
+          <p>Selon vos besoins et le résultat escompté, il est possible de poser une ou plusieurs facettes dentaires, afin de rendre grâce et proportion à votre sourire. Nos techniques d’intervention veillent à protéger vos dents, dans le respect de leur implantation naturelle.</p>
+          <a href="#" class="phototheque-btn">Voir la photothèque</a>
+          <h4>Notre expertise en facettes dentaires</h4>
+          <ul>
+            <li>Préservation de la dentition, grâce à une technique sans taille des dents préalable</li>
+            <li>Facettes dentaires en céramique fine, de 0.2 à 0.3mm d’épaisseur</li>
+            <li>Maquettes de pré-visualisation en résine, pour estimer le résultat à l’avance</li>
+          </ul>
+        `,
+        implants: `
+          <h2>Pose d’implants dentaires</h2>
+          <h3>Réparer durablement votre sourire</h3>
+          <p>Les implants dentaires permettent de résoudre les problèmes de perte de dents, qui affectent la fonction, l’esthétisme et le confort. Il s’agit de racines dentaires artificielles en titane qui viennent fusionner avec la structure osseuse de la mâchoire et assurent une stabilité à la prothèse dentaire que l’on scelle par-dessus.</p>
+          <div class="facettes-slider">
+            <img src="images/implants1.jpg" alt="Avant – Après pose d’un implant dentaire" class="facette-photo">
+            <img src="images/implants2.jpg" alt="Avant – Après pose d’un implant dentaire" class="facette-photo">
+          </div>
+          <p>Après examen clinique et étude des radiographies panoramiques et 3D, nous choisissons l’implant le plus adapté à la structure osseuse en termes de longueur et de diamètre.</p>
+          <p>L’intervention consiste ensuite en l’insertion dans l’os de la mâchoire de l’implant dentaire. Un pilier de cicatrisation est ensuite vissé dans le corps de l’implant. Au terme de 4 à 6 mois, on réalise la prothèse dentaire définitive. Pendant l’intervention, la gestion de la douleur prévaut et nous nous assurons autant du confort du patient que de la précision technique.</p>
+          <p>Dans les jours qui suivent l’intervention, nous restons vigilants et disponibles, à l’écoute du patient.</p>
+          <a href="#" class="phototheque-btn">Voir la photothèque</a>
+          <h4>Notre expertise en implants dentaires</h4>
+          <ul>
+            <li>Un plateau technique complet : un cabinet dédié et une radiographie 3D sur site</li>
+            <li>Un panel de techniques différentes : implantation en un seul temps chirurgical, technique d’extraction et d’implantation immédiate</li>
+            <li>Des prothèses provisoires fixes ou mobiles adaptées dans l’attente de la cicatrisation complète et de la prothèse définitive</li>
+          </ul>
+        `,
+        protheses: `
+          <h2>Pose de prothèses dentaires</h2>
+          <h3>Restructurer votre sourire</h3>
+          <p>Les prothèses dentaires servent à remplacer des dents manquantes ou abîmées, et aident ainsi à rétablir l’esthétisme du sourire et à améliorer le confort de mastication.</p>
+          <div class="facettes-slider">
+            <img src="images/protheses1.jpg" alt="Couronne prothèse dentaire 1" class="facette-photo">
+            <img src="images/protheses2.jpg" alt="Couronne prothèse dentaire 2" class="facette-photo">
+            <img src="images/protheses3.jpg" alt="Couronne prothèse dentaire 3" class="facette-photo">
+          </div>
+          <p>Plusieurs solutions existent selon le nombre de dents manquantes et le résultat escompté.</p>
+          <ul class="facettes-list">
+            <li><strong>Couronne</strong> <a href="#" class="visualiser">Cliquez ici pour visualiser</a></li>
+            <li><strong>Couronne</strong> <a href="#" class="visualiser">Cliquez ici pour visualiser</a></li>
+            <li><strong>Couronne</strong> <a href="#" class="visualiser">Cliquez ici pour visualiser</a></li>
+          </ul>
+          <p>Les <strong>COURONNES</strong> sont des prothèses dentaires fixes. Nous utilisons exclusivement de la céramique esthétique pour remplacer les dents abimées (pas d’alliage métallique). La dent retrouve une forme harmonieuse et une fonctionnalité optimale.<br>
+          Les <strong>BRIDGES</strong> constituent une solution alternative pour remplacer une ou plusieurs dents manquantes dans les cas où les techniques implantaires ne conviennent pas. Cette solution permet un rendu final esthétique et confortable.<br>
+          Les <strong>INLAYS/ONLAYS</strong> en céramique sont la réponse au soucis constant de ne pas abimer les tissus sains de vos dents. Nous réalisons des restaurations partielles en céramique. Effectuées au laboratoire, elles assurent précision, durabilité et résistance.</p>
+          <a href="#" class="phototheque-btn">Voir la photothèque</a>
+          <h4>Notre expertise</h4>
+          <ul>
+            <li>Dans la majorité des cas, nous vous proposons des systèmes de réhabilitations fixes (couronnes, bridges, prothèses sur implants)</li>
+            <li>Utilisation minimale d’éléments métalliques pour un rendu esthétique optimal et une meilleure biocompatibilité</li>
+            <li>Pose de prothèses dentaires toutes céramiques pour éviter les problèmes de rétraction gingivale</li>
+          </ul>
+        `,
+        gouttieres: `
+          <h2>Réalisation de gouttières dentaires</h2>
+          <h3>Vous redonner le sourire</h3>
+          <p>Invisibles et indolores, les gouttières dentaires apportent une solution d’orthodontie pour les adultes et adolescents. Réalisées sur-mesure et uniques, elles agissent progressivement sur les malpositions et redressent vos dents en douceur. Elles peuvent être utilisées dans différents cas, pour des raisons esthétiques comme pour des raisons de santé.</p>
+          <div class="facettes-slider">
+            <img src="images/gouttieres1.jpg" alt="Gouttières exemple 1" class="facette-photo">
+            <img src="images/gouttieres2.jpg" alt="Gouttières exemple 2" class="facette-photo">
+          </div>
+          <p>Les gouttières dentaires permettent de corriger durablement l’alignement de vos dents.</p>
+          <ul class="facettes-list">
+            <li>Réaligner des dents mal alignées ou écartées.</li>
+            <li>Corriger une malocclusion dentaire entre le haut et le bas de la mâchoire.</li>
+            <li>Répondre à un dysfonctionnement de la mâchoire.</li>
+          </ul>
+          <h4>Vos gouttières dentaires en 4 étapes</h4>
+          <ol>
+            <li>Lors de la 1ère consultation, nous identifions ensemble l’objectif à atteindre. Nous prenons aussi l’empreinte de vos dents et relevons différentes informations.​</li>
+            <li>Un plan d’accompagnement détaillé vous est ensuite proposé pour validation. Il précise la durée de traitement recommandé, son coût et le nombre de gouttières nécessaires. Une fois validé, la production est lancée et vos premiers aligneurs sont disponibles sous 2 semaines au cabinet.​</li>
+            <li>Toutes les 1 à 3 semaines, vos gouttières sont changées pour déplacer progressivement vos dents. Pendant 6 à 24 mois, vous les portez au maximum chaque jour (22h sont recommandées) jusqu’à l’atteinte de votre objectif. Vous les retirez pour manger ou vous brosser les dents.​</li>
+            <li>Au-delà de ce traitement, des systèmes de contention peuvent être recommandés pour la stabilisation de votre nouveau sourire. ​</li>
+          </ol>
+          <p>Invisibles et indolores, les gouttières dentaires vous redonnent un beau sourire !​​</p>
+          <a href="#" class="phototheque-btn">Voir la photothèque</a>
+          <h4>Notre expertise en gouttières dentaires</h4>
+          <ul>
+            <li>Examen clinique complet et sur place grâce à notre plateau d’imagerie dentaire​</li>
+            <li>Sélection des gouttières performantes et respectueuses de votre santé​</li>
+            <li>Attention portée à votre confort et au rendu esthétique ​</li>
+          </ul>
+          <a href="#contact" class="phototheque-btn">Prendre rendez-vous</a>
+          <h4>Gouttière Smilers</h4>
+          <p><strong>Les avantages de nos gouttières dentaires​</strong><br>
+          Les produits que nous proposons sont créés par le seul fabricant français d’aligneurs invisibles à être labellisé Origine France Garantie. Ils sont fabriqués dans son usine située à Aix-en-Provence et certifiée ISO 13485. Notre partenaire offre ainsi un gage de qualité et de proximité, et la garantie de livraisons régulières pour la continuité du traitement. ​</p>
+          <p>Acteur historique de l’impression 3D, la combinaison de nos savoir-faire dans l’imagerie contribue à la fiabilité de réalisation d’une gouttière qui épouse les moindres détails de chacune de vos dents. Pour des finitions impeccables, les aligneurs sont polis manuellement avant la sortie de l’atelier. De l’impression aux finitions dans l’atelier, tout est mis en œuvre pour lisser les aligneurs. En effet, l’élimination des aspérités permet de limiter les dépôts qui s’accrochent à vos gouttières.​</p>
+          <p>Les aligneurs sont composés de PETG, une matière plastique transparente, biocompatible et sans bisphénol. Souples, ils maximisent la surface de contact avec les dents.​</p>
+          <h4>Tout savoir sur les gouttières dentaires​</h4>
+          <p>Qui ne se souvient pas des fameuses bagues en métal, à la fois peu esthétiques et douloureuses ? Ces méthodes étaient utilisées avant l’arrivée de nouvelles techniques d’orthodontie pour adultes : les gouttières dentaires, aussi appelées aligneurs.​</p>
+          <p>A la différence des techniques précédentes, cet appareil dentaire amovible répond à un public adulte. Et les avantages des gouttières sont multiples, pour l’esthétique, le confort et les résultats. Elles apportent une solution à différents cas comme l’alignement ou la malocclusion.​</p>
+          <p>Avant de démarrer l’orthodontie, plusieurs étapes sont indispensables. Une première consultation chez un dentiste professionnel et spécialisé permet d’établir un bilan de votre dentition et de définir un plan d’accompagnement précis. Il évaluera aussi le coût global vous permettant d’interroger votre mutuelle santé.​</p>
+          <p>Tout au long du traitement, votre dentiste spécialiste des gouttières vous accompagne. A chaque consultation, il répond à vos interrogations et vous conseille, par exemple sur l’hygiène et le nettoyage de vos appareils. Il vous propose aussi des solutions en cas de casse ou de perte d’une gouttière. Par la suite, votre dentiste peut vous proposer des systèmes de contention pour stabiliser votre nouveau sourire.​</p>
+        `,
+        blanchiment: ``,
+        imagerie: `
+          <h2>Plateau d’imagerie dentaire</h2>
+          <h3>Proposer des services de radiologie sur site</h3>
+          <p>Nous vous proposons, au sein même du cabinet, un plateau radiologique complet, afin de parachever l’examen clinique par un diagnostic et des propositions de traitements immédiates.</p>
+          <div class="facettes-slider">
+            <img src="images/imagerie1.jpg" alt="Imagerie dentaire 1" class="facette-photo">
+            <img src="images/imagerie2.jpg" alt="Imagerie dentaire 2" class="facette-photo">
+          </div>
+          <p>Sur place, nous disposons d’un matériel de pointe d’imagerie dentaire pour des radios panoramiques numériques  et des clichés radiographiques 3D volumétriques. 
+          Ces radios 3D en imagerie dentaire sont nécessaires au bon déroulement de certaines procédures, telles que :</p>
+          <ul class="facettes-list">
+            <li><strong>Les implants dentaires.</strong> La radiographie 3D permet l’analyse du volume osseux et le choix de l’implant le plus adapté.</li>
+            <li><strong>Les extractions de dent de sagesse.</strong> La radio 3D permet d’observer précisément la forme des racines, ou encore le positionnement du nerf dentaire inférieur souvent proche des racines à extraire.</li>
+            <li><strong>Le système canalaire des dents.</strong> Cette technique de radiologie permet de localiser les canaux dentaires, les fractures ou les fêlures éventuelles et les foyers infectieux autour des racines.</li>
+          </ul>
+          <p>Tout notre système d’imagerie est numérisé, facilitant le cas échéant la communication avec d’autres spécialistes.</p>
+          <a href="#" class="phototheque-btn">Voir la photothèque</a>
+          <h4>Notre expertise</h4>
+          <ul>
+            <li>Les appareils numériques permettent une diminution du temps d’exposition aux radiations</li>
+            <li>Les logiciels d’imagerie permettent une planification implantaire précise et rigoureuse</li>
+          </ul>
+          <a href="#contact" class="phototheque-btn">Prendre rendez-vous</a>
+          <p><em>Ces articles peuvent vous intéresser</em></p>
+        `,
+      };
+
+      const serviceLinks = document.querySelectorAll('.service-link');
+      const serviceDetails = document.getElementById('service-details');
+
+      serviceLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const parent = link.closest('li[data-service]');
+          if (!parent) return;
+          const service = parent.getAttribute('data-service');
+          if (services[service]) {
+            serviceDetails.innerHTML = services[service];
+            serviceDetails.classList.remove('hidden');
+            serviceDetails.scrollIntoView({behavior: 'smooth'});
+          } else {
+            serviceDetails.innerHTML = '';
+            serviceDetails.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
